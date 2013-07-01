@@ -20,9 +20,12 @@ exports.UserSchema = new Schema({
 		email: 			{type: String, set: toLower, lowercase: true},
 		image: 			String, //fix
 		karma: 			Integer,
+		upvoted:		[Schema.ObjectId],
+		saved:			[Schema.ObjectId],
 		nominations: 	{},
+		nominated:		[String],
 		connections: 	[Schema.ObjectId],
-		messages:		[Schema.MessageId],
+		messages:		[Schema.ObjectId],
 	},
 });
 
