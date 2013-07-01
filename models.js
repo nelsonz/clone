@@ -15,11 +15,11 @@ exports.UserSchema = new Schema({
 		view_langs: 	[String],
 		site: 			String,
 		blurb: 			String,
-		joined: 		String, //fix
+		joined: 		{ type: Date, default: Date.now }, 
 		subs: 			[String],
 		email: 			{type: String, set: toLower, lowercase: true},
 		image: 			String, //fix
-		karma: 			Integer,
+		karma: 			{ type: Integer, default: 0 },
 		upvoted:		[Schema.ObjectId],
 		saved:			[Schema.ObjectId],
 		nominations: 	{},
@@ -34,11 +34,11 @@ exports.PostSchema = new Schema({
 	lang: 		{type: String, required: true},
 	tr_title: 	{}, 
 	owner: 		Schema.ObjectId,
-	date: 		String //fix
+	date: 		{ type: Date, default: Date.now },
 	content: 	{type: String, required: true},
 	tr_content: {},
-	subs: 		[String], //ObjectId?
-	karma: 		Integer,
+	subs: 		{type: [String], default: [] }, //ObjectId?
+	karma: 		{ type: Integer, default: 0 },
 });
 
 exports.CommentSchema = new Schema({
@@ -46,11 +46,11 @@ exports.CommentSchema = new Schema({
 	thread: 	Schema.ObjectId,
 	parent: 	Schema.ObjectId,
 	local_id: 	Integer,
-	date: 		String, //fix
+	date: 		{ type: Date, default: Date.now },
 	lang: 		{type: String, required: true},
 	content: 	{type: String, required: true},
 	tr_content: {},
-	karma: 		Integer,
+	karma: 		{ type: Integer, default: 0 },
 });
 
 exports.SubSchema = new Schema({
@@ -65,5 +65,5 @@ exports.MessageSchema = new Schema({
 	sender: 	Schema.ObjectId,
 	recipient: 	Schema.ObjectId,
 	content: 	{type: String, required: true},
-	date: 		String, //fix
+	date: 		{ type: Date, default: Date.now }, 
 });
